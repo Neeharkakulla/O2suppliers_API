@@ -22,13 +22,14 @@ import com.api.o2suppliers.model.ImageModel;
 
 @RestController
 @RequestMapping(path = "api/users/image")
-@CrossOrigin
+
 public class ImageUploadController {
 
 	@Autowired
 	ImageRepository imageRepository;
 
 	@PostMapping("/upload")
+	@CrossOrigin
 	public ImageModel uplaodImage(@RequestParam("imageFile") MultipartFile file) throws IOException {
 
 		
@@ -39,6 +40,7 @@ public class ImageUploadController {
 	}
 
 	@GetMapping(path = { "/get/{id}" })
+	@CrossOrigin
 	public ImageModel getImage(@PathVariable("id") int id) throws IOException {
 		
 		final Optional<ImageModel> retrievedImage = imageRepository.findById((long)id);

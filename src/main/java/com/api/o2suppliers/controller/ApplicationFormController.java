@@ -15,63 +15,71 @@ import org.springframework.web.bind.annotation.RestController;
 import com.api.o2suppliers.model.ApplicationForm;
 import com.api.o2suppliers.service.ApplicationFormService;
 
-
 @RestController
 @RequestMapping("/api/application")
-@CrossOrigin
 public class ApplicationFormController {
 	@Autowired
 	ApplicationFormService formService;
-	
+
 	@GetMapping("/getAll")
-	public List<ApplicationForm> getAll(){
+	@CrossOrigin
+	public List<ApplicationForm> getAll() {
 		return formService.getAll();
 	}
+
 	@PostMapping("/applyForm")
+	@CrossOrigin
 	public void applyForm(@RequestBody ApplicationForm form) {
-		
+
 		formService.applyForm(form);
 	}
+
 	@GetMapping("/myapplications/{email}")
-	public List<ApplicationForm> getMyApplications(@PathVariable("email") String email){
-		
-		
+	@CrossOrigin
+	public List<ApplicationForm> getMyApplications(@PathVariable("email") String email) {
+
 		return formService.getApplicationWithUserId(email);
 	}
-	
+
 	@PutMapping("/cancel")
+	@CrossOrigin
 	public void cancelForm(@RequestBody ApplicationForm form) {
 		formService.updateForm(form);
 	}
-	
 	@PutMapping("/revoke")
+	@CrossOrigin
 	public void revokeForm(@RequestBody ApplicationForm form) {
 		formService.updateForm(form);
 	}
 
 	@GetMapping("/waitingwith/doctor")
-	public List<ApplicationForm> getApplicationWaitingWithDoctor(){
-		
+	@CrossOrigin
+	public List<ApplicationForm> getApplicationWaitingWithDoctor() {
 
+		System.out.println(formService.getApplicationWaitingWithDoctor());
 		return formService.getApplicationWaitingWithDoctor();
-		
-		
-		
+
 	}
+
 	@PutMapping("/approve")
-	public List<ApplicationForm> approveRequesst(@RequestBody ApplicationForm form){
-		
+	@CrossOrigin
+	public List<ApplicationForm> approveRequesst(@RequestBody ApplicationForm form) {
+
 		formService.approveRequest(form);
 		return formService.getApplicationWaitingWithDoctor();
 	}
+
 	@GetMapping("/waitingwith/supplier")
-	public List<ApplicationForm> getApplicationWaitingWithSupplier(){
+	@CrossOrigin
+	public List<ApplicationForm> getApplicationWaitingWithSupplier() {
 		return formService.getApplicationWaitingWithSupplier();
 	}
+
 	@PutMapping("/approve/delivery")
-	public List<ApplicationForm> approveDelivery(@RequestBody ApplicationForm form){
+	@CrossOrigin
+	public List<ApplicationForm> approveDelivery(@RequestBody ApplicationForm form) {
 		formService.approveDelivery(form);
 		return formService.getApplicationWaitingWithSupplier();
 	}
-	
+
 }
