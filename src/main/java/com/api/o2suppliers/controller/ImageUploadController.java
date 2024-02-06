@@ -22,7 +22,7 @@ import com.api.o2suppliers.model.ImageModel;
 
 @RestController
 @RequestMapping(path = "api/users/image")
-
+@CrossOrigin
 public class ImageUploadController {
 
 	@Autowired
