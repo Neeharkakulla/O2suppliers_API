@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
 
 @Entity
@@ -43,6 +44,7 @@ public class ImageModel {
     //image bytes can have large lengths so we specify a value
     //which is more than the default length for picByte column
 	@Column(name = "picByte")
+	@Lob
 	private byte[] picByte;
 
 	public String getName() {

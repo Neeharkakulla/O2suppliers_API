@@ -60,11 +60,13 @@ public class UserController {
 	}
 
 	@PostMapping("/newpassword")
+	@CrossOrigin
 	public void changePasswordUser(@RequestBody UserDetails user) {
 		userService.updateUser(user);
 	}
 
 	@GetMapping("/getAll")
+	@CrossOrigin
 	public List<UserDetails> getAllUsers() {
 		return userService.getAllUsers();
 	}
